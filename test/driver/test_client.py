@@ -54,7 +54,7 @@ class StreamMachineClientTest(unittest.TestCase):
         )
 
         while True:
-            client.start_receiving_sse(True, lambda message: print(message))
+            client.start_receiving_ws(True, lambda message: print(message))
 
     @staticmethod
     def setup_auth_mockserver():

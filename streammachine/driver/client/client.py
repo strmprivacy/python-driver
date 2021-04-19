@@ -28,7 +28,7 @@ class StreamMachineClient(object):
     async def send(self, event: StreamMachineEvent, serialization_type: SerializationType) -> str:
         return await self._sender_service.asend(event, serialization_type)
 
-    async def start_receiving_sse(self, as_json: bool, consumer: Callable[[Any], Any]):
+    async def start_receiving_ws(self, as_json: bool, consumer: Callable[[Any], Any]):
         return await self._receiver_service.start(as_json, consumer)
 
     async def close(self):
