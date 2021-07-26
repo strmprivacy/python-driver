@@ -11,8 +11,8 @@ class StreamMachineEventDTO(object):
     event: StreamMachineEvent
     serialization_type: SerializationType
 
-    def get_schema_id(self) -> str:
-        return self.event.get_strm_schema_id()
+    def get_schema_ref(self) -> str:
+        return self.event.get_strm_schema_ref()
 
     def get_schema_type(self) -> str:
         return self.event.get_strm_schema_type()
@@ -29,7 +29,7 @@ class StreamMachineEventDTO(object):
 
     def serialize(self) -> bytes:
         stream_machine_schema = self.event.get_strm_schema()
-        serializer = SerializationProvider.get_serializer(self.get_schema_id(), self.get_schema_type(),
+        serializer = SerializationProvider.get_serializer(self.get_schema_ref(), self.get_schema_type(),
                                                           stream_machine_schema)
 
         return serializer.serialize(self.event, self.serialization_type)

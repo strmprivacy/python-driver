@@ -10,20 +10,20 @@ class SerializationProvider(object):
             "SerializationProvider is not meant to be instantiated. Use the static methods instead.")
 
     @staticmethod  # TODO add schema class type
-    def get_serializer(schema_id: str, schema_type: str, schema) -> EventSerializer:
-        existing_serializer = SerializationProvider._serializers.get(schema_id)
+    def get_serializer(schema_ref: str, schema_type: str, schema) -> EventSerializer:
+        existing_serializer = SerializationProvider._serializers.get(schema_ref)
 
         if existing_serializer is None:
             if schema_type == "avro":
                 serializer = AvroSerializer(schema)
 
-                SerializationProvider._serializers[schema_id] = serializer
+                SerializationProvider._serializers[schema_ref] = serializer
 
                 return serializer
             elif schema_type == "json":
                 serializer = JsonSerializer(schema)
 
-                SerializationProvider._serializers[schema_id] = serializer
+                SerializationProvider._serializers[schema_ref] = serializer
 
                 return serializer
             else:

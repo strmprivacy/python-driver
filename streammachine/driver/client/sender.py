@@ -32,7 +32,7 @@ class SenderService(object):
             'Strm-Serialization-Type': dto.get_serialization_type_header(),
             'Strm-Driver-Version': self._config.version.brief_string(),
             'Strm-Driver-Build': self._config.version.release_string(),
-            'Strm-Schema-Id': dto.get_schema_id()
+            'Strm-Schema-Ref': dto.get_schema_ref()
         }
 
         async with self._session.post(self._config.gateway_uri, data=dto.serialize(),
