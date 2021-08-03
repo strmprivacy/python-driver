@@ -18,7 +18,7 @@ setup(
     ],
     description=" Common Schema for Stream Machine driver",
     install_requires=[
-        "streammachine-schemas-common==0.0.3",
+        "streammachine-schemas-common==1.0.0",
         "requests>=2.24.0",
         "aiohttp>=3.6.2",
         "avro-python3>=1.10.0",
@@ -40,6 +40,6 @@ setup(
     packages=find_namespace_packages(include=['streammachine.*']),
     namespace_packages=["streammachine"],
     setup_requires=[],
-    version='0.0.11',
+    version='0.0.12',
     zip_safe=False,
 )
