@@ -40,6 +40,6 @@ setup(
     packages=find_namespace_packages(include=['streammachine.*']),
     namespace_packages=["streammachine"],
     setup_requires=[],
-    version='0.0.12',
+    version='0.0.9',
     zip_safe=False,
 )
