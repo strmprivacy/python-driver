@@ -1,4 +1,4 @@
-name: Publish to Maven Central
+name: Publish to PyPi
 
 on:
   release:
