@@ -12,11 +12,12 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
     ],
-    description=" Common Schema for Stream Machine driver",
+    description="Python driver for interacting with Stream Machine.",
     install_requires=[
         "streammachine-schemas-common==1.0.0",
         "requests>=2.24.0",
