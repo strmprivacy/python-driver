@@ -4,13 +4,12 @@ from .receiver import ReceiverService
 from .sender import SenderService
 from ..domain import ClientConfig
 from ..serializer import SerializationType
-from streammachine.schemas.common import StreamMachineEvent
 
 
-class StreamMachineClient(object):
+class StrmPrivacyClient(object):
     def __init__(self, billing_id: str, client_id: str, client_secret: str, config: ClientConfig):
         """
-        Class to interact with Stream Machine. For each stream, a separate instance of `StreamMachineClient`
+        Class to interact with STRM Privacy. For each stream, a separate instance of `StrmPrivacyClient`
         is required.
 
         :param billing_id: unique customer identifier
@@ -25,7 +24,7 @@ class StreamMachineClient(object):
         await self._sender_service.start_timer()
         await self._receiver_service.start_timer()
 
-    async def send(self, event: StreamMachineEvent, serialization_type: SerializationType) -> str:
+    async def send(self, event, serialization_type: SerializationType) -> str:
         return await self._sender_service.asend(event, serialization_type)
 
     async def start_receiving_ws(self, as_json: bool, consumer: Callable[[Any], Any]):

@@ -9,14 +9,13 @@ from avro.io import DatumWriter
 from avro.schema import Schema
 from avro_json_serializer import AvroJsonSerializer
 from jsonschema import validate
-from streammachine.schemas.common import StreamMachineEvent
 
 from .type import SerializationType, UnsupportedSerializationTypeException
 
 
 class EventSerializer(ABC):
     @abstractmethod
-    def serialize(self, event: StreamMachineEvent, serialization_type: SerializationType) -> bytes:
+    def serialize(self, event, serialization_type: SerializationType) -> bytes:
         pass
 
 
@@ -25,7 +24,7 @@ class AvroSerializer(EventSerializer):
         self._schema: Schema = schema
         self._serializer: Union[DatumWriter, AvroJsonSerializer] = None
 
-    def serialize(self, event: StreamMachineEvent, serialization_type: SerializationType) -> bytes:
+    def serialize(self, event, serialization_type: SerializationType) -> bytes:
         if serialization_type is SerializationType.AVRO_BINARY:
             return self._serialize_avro_binary(event)
         elif serialization_type is SerializationType.AVRO_JSON:
@@ -57,7 +56,7 @@ class JsonSerializer(EventSerializer):
     def __init__(self, schema: dict):
         self._schema = schema
 
-    def serialize(self, event: StreamMachineEvent, _: SerializationType) -> str:
+    def serialize(self, event, _: SerializationType) -> str:
         validate(dataclasses.asdict(event), self._schema)
 
         return json.dumps(event, cls=JsonSerializer.Encoder)

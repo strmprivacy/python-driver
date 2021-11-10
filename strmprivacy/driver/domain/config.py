@@ -9,14 +9,14 @@ class ClientConfig(object):
     def __init__(self, log_level=logging.INFO, **kwargs):
         self._log_level = log_level
         self._gateway_protocol = kwargs.get("gateway_protocol", "https")
-        self._gateway_host = kwargs.get("gateway_host", "in.strm.services")
+        self._gateway_host = kwargs.get("gateway_host", "events.strmprivacy.io")
         self._gateway_endpoint = kwargs.get("gateway_endpoint", "/event")
         self._egress_protocol = kwargs.get("egress_protocol", "https")
-        self._egress_host = kwargs.get("egress_host", "out.strm.services")
+        self._egress_host = kwargs.get("egress_host", "websocket.strmprivacy.io")
         self._egress_endpoint = kwargs.get("egress_endpoint", "/ws")
         self._egress_health_endpoint = kwargs.get("egress_health_endpoint", "/is-alive")
         self._sts_protocol = kwargs.get("sts_protocol", "https")
-        self._sts_host = kwargs.get("sts_host", "auth.strm.services")
+        self._sts_host = kwargs.get("sts_host", "sts.strmprivacy.io")
         self._sts_auth_endpoint = kwargs.get("sts_auth_endpoint", "/auth")
         self._sts_refresh_endpoint = kwargs.get("sts_refresh_endpoint", "/refresh")
         self._sts_refresh_interval = kwargs.get("sts_refresh_interval", 3300)

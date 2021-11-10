@@ -5,7 +5,7 @@ from threading import Thread
 
 import janus
 
-from .. import StreamMachineClient, SerializationType
+from .. import StrmPrivacyClient, SerializationType
 from ..domain.config import ClientConfig
 
 
@@ -36,7 +36,7 @@ class SyncSender(Thread):
 
     async def async_start(self, billing_id, client_id, client_secret):
         self._queue = janus.Queue()
-        client = StreamMachineClient(billing_id, client_id, client_secret, self._config)
+        client = StrmPrivacyClient(billing_id, client_id, client_secret, self._config)
         await client.start_timers()  # for the re-authorization jwt timer
         while True:
             event, serialization_type = await self._queue.async_q.get()
