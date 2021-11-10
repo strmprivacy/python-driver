@@ -12,4 +12,3 @@ avro-json-serializer==1.0.3
 avro-python3>=1.10.0
 aiohttp-sse-client>=0.2.0
 janus>=0.5.0
-streammachine-schemas-common==1.0.0

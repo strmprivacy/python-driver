@@ -1,7 +1,7 @@
 from aiohttp import ClientSession
 
 from .auth import AuthService
-from ..domain import StreamMachineEventDTO
+from ..domain import StrmPrivacyEventDTO
 from ..domain.config import ClientConfig
 
 
@@ -25,7 +25,7 @@ class SenderService(object):
         await self.auth_service.start()
 
     async def asend(self, event, serialization_type) -> str:
-        dto = StreamMachineEventDTO(event, serialization_type)
+        dto = StrmPrivacyEventDTO(event, serialization_type)
         headers = {
             'Authorization': f'Bearer {self.auth_service.get_access_token()}',
             'Content-Type': 'application/octet-stream',
@@ -41,7 +41,7 @@ class SenderService(object):
 
             if response.status != 204:
                 self._logger.error(
-                    f"Error while sending event to Stream Machine ({self._config.gateway_uri}), response status = {response.status}, response: {response_text}")
+                    f"Error while sending event to STRM Privacy ({self._config.gateway_uri}), response status = {response.status}, response: {response_text}")
             return response.status
 
     async def close(self):

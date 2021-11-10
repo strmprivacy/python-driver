@@ -14,7 +14,7 @@ class AuthService(object):
 
     def __init__(self, purpose: str, billing_id: str, client_id: str, client_secret: str, config: ClientConfig):
         """
-        Service responsible for ensuring the validity of access tokens for the Stream Machine Client
+        Service responsible for ensuring the validity of access tokens for the StrmPrivacyClient
 
         :param purpose: for which is the AuthService initialized
         :param billing_id: unique customer identifier

@@ -1,15 +1,15 @@
- import asyncio
+import asyncio
 import json
 import re
 import unittest
 
 import responses
 
-from strm.driver import SerializationType, StreamMachineClient, ClientConfig
+from strmprivacy.driver import SerializationType, StrmPrivacyClient, ClientConfig
 from test.test_util import TestData
 
 
-class StreamMachineClientTest(unittest.TestCase):
+class StrmPrivacyClientTest(unittest.TestCase):
     _BILLING_ID = "robin5"
     _CLIENT_ID = "8xkz4x63rfqfvc5b97oq2ej1gzidqa"
     _CLIENT_SECRET = "4NZD3#cWeGG_X0FpR%kfGwKJNQJLBZ"
@@ -22,15 +22,15 @@ class StreamMachineClientTest(unittest.TestCase):
 
     # @responses.activate
     def test_send_events(self):
-        StreamMachineClientTest.setup_auth_mockserver()
+        StrmPrivacyClientTest.setup_auth_mockserver()
 
-        for parameters in StreamMachineClientTest._PARAMETERS:
+        for parameters in StrmPrivacyClientTest._PARAMETERS:
             with self.subTest(msg=parameters['name']):
                 # Given an event
-                client = StreamMachineClient(
-                    StreamMachineClientTest._BILLING_ID,
-                    StreamMachineClientTest._CLIENT_ID,
-                    StreamMachineClientTest._CLIENT_SECRET,
+                client = StrmPrivacyClient(
+                    StrmPrivacyClientTest._BILLING_ID,
+                    StrmPrivacyClientTest._CLIENT_ID,
+                    StrmPrivacyClientTest._CLIENT_SECRET,
                     ClientConfig()
                 )
                 event = parameters['event']
@@ -46,7 +46,7 @@ class StreamMachineClientTest(unittest.TestCase):
                 self.assertEqual("ok", response)
 
     def test_receive_events(self):
-        client = StreamMachineClient(
+        client = StrmPrivacyClient(
             'robin5',
             '7vbcwbpdf6maj8uffp5mo7743yaazz',
             'iS@yD8Dq5@OAFTDdMs&hGOjWHD%aOI',

@@ -47,13 +47,13 @@
             },
             {
               "files": [
-                "streammachine/driver/__init__.py"
+                "strmprivacy/driver/__init__.py"
               ],
               "from": "__version__\\s?=\\s?'.*'",
               "to": "__version__ = '${nextRelease.version}'",
               "results": [
                 {
-                  "file": "streammachine/driver/__init__.py",
+                  "file": "strmprivacy/driver/__init__.py",
                   "hasChanged": true,
                   "numMatches": 1,
                   "numReplacements": 1
@@ -70,7 +70,7 @@
           "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}",
           "assets": [
             "setup.py",
-            "streammachine/driver/__init__.py",
+            "strmprivacy/driver/__init__.py",
             "CHANGELOG.md"
           ]
         }

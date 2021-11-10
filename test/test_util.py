@@ -1,12 +1,11 @@
-from strm.driver import current_time_millis
-from strm.driver.domain import StreamMachineEvent
-from strm.schema.avro.io.streammachine.schema.avro.strm_avro.v1 import StrmEvent
-from strm.schema.json import SchemaJsonEvent, StrmMeta, Customer
+from strmprivacy.driver import current_time_millis
+from strmprivacy.schema.avro.io.streammachine.schema.avro.strm_avro.v1 import StrmEvent
+from strmprivacy.schema.json import SchemaJsonEvent, StrmMeta, Customer
 
 
 class TestData(object):
     @staticmethod
-    def create_avro_event() -> StreamMachineEvent:
+    def create_avro_event():
         event = StrmEvent()
         event.abtests = ["abc"]
         event.customer.id = "integration-test"
@@ -20,7 +19,7 @@ class TestData(object):
         return event
 
     @staticmethod
-    def create_json_event() -> StreamMachineEvent:
+    def create_json_event():
         return SchemaJsonEvent(
             strmMeta=(StrmMeta(
                 schemaId="schema_json",

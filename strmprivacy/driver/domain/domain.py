@@ -1,14 +1,13 @@
 from dataclasses import dataclass
 
-from streammachine.schemas.common import StreamMachineEvent
 
 from ..serializer import SerializationType, SerializationProvider
 from ..serializer.type import UnsupportedSerializationTypeException
 
 
 @dataclass
-class StreamMachineEventDTO(object):
-    event: StreamMachineEvent
+class StrmPrivacyEventDTO(object):
+    event: object
     serialization_type: SerializationType
 
     def get_schema_ref(self) -> str:

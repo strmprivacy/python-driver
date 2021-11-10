@@ -6,7 +6,7 @@ with open('README.md') as readme_file:
 
 setup(
     author="Stream Machine B.V.",
-    author_email='apis@streammachine.io',
+    author_email='apis@strmprivacy.io',
     python_requires='>=3.6',
     classifiers=[
         'Programming Language :: Python :: 3.6',
@@ -17,9 +17,8 @@ setup(
         'Operating System :: OS Independent',
         'Topic :: Internet :: WWW/HTTP',
     ],
-    description="Python driver for interacting with Stream Machine.",
+    description="Python driver for interacting with STRM Privacy.",
     install_requires=[
-        "streammachine-schemas-common==1.0.0",
         "requests>=2.24.0",
         "aiohttp>=3.6.2",
         "avro-python3>=1.10.0",
@@ -36,10 +35,10 @@ setup(
     ],
     long_description=readme,
     include_package_data=True,
-    keywords='streammachine api client driver',
-    name='streammachine-driver',
-    packages=find_namespace_packages(include=['streammachine.*']),
-    namespace_packages=["streammachine"],
+    keywords='strmprivacy api client driver',
+    name='strmprivacy-driver',
+    packages=find_namespace_packages(include=['strmprivacy.*']),
+    namespace_packages=["strmprivacy"],
     setup_requires=[],
     version='1.0.0',
     zip_safe=False,
