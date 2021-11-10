@@ -1,6 +1,5 @@
 requests>=2.24.0
 aiohttp>=3.6.2
-avro-python3>=1.10.0
 jsonschema>=3.2.0
 pytz>=2020.1
 pbr>=5.5.0

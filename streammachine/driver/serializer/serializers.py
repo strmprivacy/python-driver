@@ -4,9 +4,7 @@ from abc import ABC, abstractmethod
 from ctypes import Union
 from io import BytesIO
 
-import avro
-from avro.io import DatumWriter
-from avro.schema import Schema
+import fastavro
 from avro_json_serializer import AvroJsonSerializer
 from jsonschema import validate
 from streammachine.schemas.common import StreamMachineEvent
@@ -21,7 +19,7 @@ class EventSerializer(ABC):
 
 
 class AvroSerializer(EventSerializer):
-    def __init__(self, schema: Schema):
+    def __init__(self, schema):
         self._schema: Schema = schema
         self._serializer: Union[DatumWriter, AvroJsonSerializer] = None
 
@@ -46,6 +44,8 @@ class AvroSerializer(EventSerializer):
         return bytes_writer.getvalue()
 
     def _serialize_avro_json(self, event_data: object) -> bytes:
+        parsed_schema = fastavro.parse_schema(self._schema)
+
         if self._serializer is None or not isinstance(self._serializer, AvroJsonSerializer):
             self._serializer = AvroJsonSerializer(self._schema)
 
