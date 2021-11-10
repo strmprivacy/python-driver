@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/streammachineio/python-driver/compare/v1.0.0...v2.0.0) (2021-11-10)
+
+
+### Features
+
+* renaming to STRM Privacy ([bd877d1](https://github.com/streammachineio/python-driver/commit/bd877d1af2d008b1ba1d4ba82819e3538eca9da0))
+
+
+### BREAKING CHANGES
+
+* streammachine -> strmprivacy
+
 # 1.0.0 (2021-08-06)
 
 
