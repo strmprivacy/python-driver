@@ -10,7 +10,6 @@ from test.test_util import TestData
 
 
 class StrmPrivacyClientTest(unittest.TestCase):
-    _BILLING_ID = "robin5"
     _CLIENT_ID = "8xkz4x63rfqfvc5b97oq2ej1gzidqa"
     _CLIENT_SECRET = "4NZD3#cWeGG_X0FpR%kfGwKJNQJLBZ"
 
@@ -28,7 +27,6 @@ class StrmPrivacyClientTest(unittest.TestCase):
             with self.subTest(msg=parameters['name']):
                 # Given an event
                 client = StrmPrivacyClient(
-                    StrmPrivacyClientTest._BILLING_ID,
                     StrmPrivacyClientTest._CLIENT_ID,
                     StrmPrivacyClientTest._CLIENT_SECRET,
                     ClientConfig()

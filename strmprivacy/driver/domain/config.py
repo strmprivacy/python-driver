@@ -15,11 +15,9 @@ class ClientConfig(object):
         self._egress_host = kwargs.get("egress_host", "websocket.strmprivacy.io")
         self._egress_endpoint = kwargs.get("egress_endpoint", "/ws")
         self._egress_health_endpoint = kwargs.get("egress_health_endpoint", "/is-alive")
-        self._sts_protocol = kwargs.get("sts_protocol", "https")
-        self._sts_host = kwargs.get("sts_host", "sts.strmprivacy.io")
-        self._sts_auth_endpoint = kwargs.get("sts_auth_endpoint", "/auth")
-        self._sts_refresh_endpoint = kwargs.get("sts_refresh_endpoint", "/refresh")
-        self._sts_refresh_interval = kwargs.get("sts_refresh_interval", 3300)
+        self._keycloak_protocol = kwargs.get("keycloak_protocol", "https")
+        self._keycloak_host = kwargs.get("keycloak_host", "accounts.strmprivacy.io")
+        self._keycloak_endpoint = kwargs.get("keycloak_endpoint", "/auth/realms/streams/protocol/openid-connect/token")
         self._version = SemanticVersion.from_pip_string(__version__)
 
     def get_logger(self, name: str) -> logging.Logger:
@@ -40,16 +38,9 @@ class ClientConfig(object):
         return f"{self._egress_protocol}://{self._egress_host}{self._egress_health_endpoint}"
 
     @property
-    def sts_auth_uri(self):
-        return f"{self._sts_protocol}://{self._sts_host}{self._sts_auth_endpoint}"
+    def keycloak_auth_uri(self):
+        return f"{self._keycloak_protocol}://{self._keycloak_host}{self._keycloak_endpoint}"
 
-    @property
-    def sts_refresh_uri(self):
-        return f"{self._sts_protocol}://{self._sts_host}{self._sts_refresh_endpoint}"
-
-    @property
-    def sts_refresh_interval(self):
-        return self._sts_refresh_interval
 
     @property
     def version(self) -> SemanticVersion:

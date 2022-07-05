@@ -8,12 +8,11 @@ from ..domain import ClientConfig
 
 
 class ReceiverService(object):
-    def __init__(self, billing_id: str, client_id: str, client_secret: str, config: ClientConfig):
+    def __init__(self, client_id: str, client_secret: str, config: ClientConfig):
         self._logger = config.get_logger(__name__)
 
         self.auth_service = AuthService(
             purpose=self.__class__.__name__,
-            billing_id=billing_id,
             client_id=client_id,
             client_secret=client_secret,
             config=config
