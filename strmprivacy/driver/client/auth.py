@@ -17,6 +17,7 @@ class AuthService(object):
         Service responsible for ensuring the validity of access tokens for the StrmPrivacyClient
 
         :param purpose: for which is the AuthService initialized
+        :param client_id: unique stream identifier
         :param client_secret: secret to authenticate this stream
         :param config: internal configuration
         """
@@ -27,7 +28,7 @@ class AuthService(object):
         self._config = config
 
         self.auth_provider: AuthProvider = None
-        self.timer_task = TimerTask(self._initialize_auth_provider, config.keycloak_refresh_interval)
+        self.timer_task = TimerTask(self._initialize_auth_provider, config.auth_refresh_interval)
 
     async def start(self):
         await self.timer_task.start()
@@ -42,7 +43,7 @@ class AuthService(object):
         self._logger.debug("authenticate")
         try:
             payload = f"grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}"
-            self._do_post(self._config.keycloak_auth_uri, payload)
+            self._do_post(self._config.auth_auth_uri, payload)
         except HTTPError as e:
             self._logger.error(
                 f"An error occurred while requesting an access token with clientId '{client_id}'")
@@ -52,7 +53,7 @@ class AuthService(object):
         try:
             payload = f"grant_type=refresh_token&client_id={client_id}&" \
                       f"client_secret={client_secret}&refresh_token={refresh_token}"
-            self._do_post(self._config.keycloak_auth_uri, payload)
+            self._do_post(self._config.auth_auth_uri, payload)
         except HTTPError as e:
             self._logger.debug(f"Failed to refresh token with clientId '{client_id}'")
             self._logger.debug(
