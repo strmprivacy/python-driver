@@ -35,6 +35,9 @@ class AuthService(object):
     def get_access_token(self) -> str:
         return self.auth_provider.access_token
 
+    def get_refresh_token(self) -> str:
+        return self.auth_provider.refresh_token
+
     def _authenticate(self, client_id: str, client_secret: str) -> None:
         self._logger.debug("authenticate")
         try:
@@ -47,7 +50,8 @@ class AuthService(object):
     def _refresh(self, refresh_token: str, client_id: str, client_secret: str) -> None:
         self._logger.debug("_refresh")
         try:
-            payload = f"grant_type=refresh_token&refresh_token={refresh_token}"
+            payload = f"grant_type=refresh_token&client_id={client_id}&" \
+                      f"client_secret={client_secret}&refresh_token={refresh_token}"
             self._do_post(self._config.keycloak_auth_uri, payload)
         except HTTPError as e:
             self._logger.debug(f"Failed to refresh token with clientId '{client_id}'")
