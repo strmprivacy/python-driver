@@ -27,18 +27,18 @@ class AuthService(object):
         self._config = config
 
         self.auth_provider: AuthProvider = None
-        self.timer_task = TimerTask(self._initialize_auth_provider, config.sts_refresh_interval)
+        self.timer_task = TimerTask(self._initialize_auth_provider, config.keycloak_refresh_interval)
 
     async def start(self):
         await self.timer_task.start()
 
     def get_access_token(self) -> str:
-        return self.auth_provider.id_token
+        return self.auth_provider.access_token
 
     def _authenticate(self, client_id: str, client_secret: str) -> None:
         self._logger.debug("authenticate")
         try:
-            payload = f"grant_type=client_credentials&client_id=${client_id}&client_secret=${client_secret}"
+            payload = f"grant_type=client_credentials&client_id={client_id}&client_secret={client_secret}"
             self._do_post(self._config.keycloak_auth_uri, payload)
         except HTTPError as e:
             self._logger.error(
@@ -47,7 +47,7 @@ class AuthService(object):
     def _refresh(self, refresh_token: str, client_id: str, client_secret: str) -> None:
         self._logger.debug("_refresh")
         try:
-            payload = f"grant_type=refresh_token&refresh_token=${refresh_token}"
+            payload = f"grant_type=refresh_token&refresh_token={refresh_token}"
             self._do_post(self._config.keycloak_auth_uri, payload)
         except HTTPError as e:
             self._logger.debug(f"Failed to refresh token with clientId '{client_id}'")
@@ -81,10 +81,11 @@ class AuthService(object):
 class AuthProvider(JsonSerializable):
     _expiration_slack_time_seconds: int = datetime.timedelta(minutes=10).seconds
 
-    def __init__(self, id_token: str, refresh_token: str, expires_at: int):
-        self.id_token = id_token
+    def __init__(self, access_token: str, refresh_token: str, expires_in: int, **kwargs):
+        self.access_token = access_token
         self.refresh_token = refresh_token
-        self.expires_at = expires_at
+        self.expires_in = expires_in
+        self.expires_at = datetime.datetime.now(tz=pytz.utc).timestamp() + expires_in
 
     @staticmethod
     def from_json(json_dict: dict) -> 'AuthProvider':
