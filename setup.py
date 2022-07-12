@@ -40,6 +40,6 @@ setup(
     packages=find_namespace_packages(include=['strmprivacy.*']),
     namespace_packages=["strmprivacy"],
     setup_requires=[],
-    version='2.0.0',
+    version='3.0.0',
     zip_safe=False,
 )

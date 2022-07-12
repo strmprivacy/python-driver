@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/strmprivacy/python-driver/compare/v2.0.0...v3.0.0) (2022-07-12)
+
+
+### Features
+
+* **strm-1259:** update driver for keycloak auth ([#4](https://github.com/strmprivacy/python-driver/issues/4)) ([7930603](https://github.com/strmprivacy/python-driver/commit/79306034abf4f1fd3b7aee3d7e0d50df34a2f79d))
+
+
+### BREAKING CHANGES
+
+* **strm-1259:** authentication has changed
+
 # [2.0.0](https://github.com/streammachineio/python-driver/compare/v1.0.0...v2.0.0) (2021-11-10)
 
 
