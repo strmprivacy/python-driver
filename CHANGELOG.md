@@ -1,3 +1,10 @@
+# [3.1.0](https://github.com/strmprivacy/python-driver/compare/v3.0.0...v3.1.0) (2022-11-15)
+
+
+### Features
+
+* remove receiver ([593a5a3](https://github.com/strmprivacy/python-driver/commit/593a5a3418b6c8073549beaf1b44d98b282083af))
+
 # [3.0.0](https://github.com/strmprivacy/python-driver/compare/v2.0.0...v3.0.0) (2022-07-12)
 
 
